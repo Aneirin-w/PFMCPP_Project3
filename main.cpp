@@ -186,6 +186,41 @@ struct CarWash //                                   1) define an empty struct fo
     */
 };
 
+/* Thing 1) Audio Interface
+5 properties:
+    1) number of ADAT inputs (int)
+    2) number of XLR inputs (int)
+    3) number of headphone outputs (int)
+    4) percentage of THD at 1kHz of the line outputs (float)
+    5) amount of watts required to operate (float)
+3 things it can do:
+    1) link analogue channel 1 and 2 together
+    2) adjust the playback level of main
+    3) mute the main monitors
+*/
+#include <iostream>
+#include <string>
+
+struct AudioInterface
+{
+    // number of ADAT inputs
+    int numOfAdatInput = 2;
+    // number of XLR inputs
+    int numOfXlrInputs = 4;
+    // number of headphone outputs
+    int numOfHeadphonesOutputs = 6;
+    // percentage of THD at 1kHz of the line outputs
+    float percentageOfTHD = 0.0001f;
+    // amount of watts required to operate
+    float amountOfWattsRequired = 29.5f;
+
+    // link analogue channel 1 and 2 together
+    void linkAnalogueChannels1And2();
+    // adjust the playback level of main
+    void mainsPlaybackLevel(int displayLevel);
+    // mute the main monitors
+    void muteMainMonitors(bool pressMuteButton);
+};
 
 /*
 Thing 2) cafe
@@ -201,6 +236,38 @@ Thing 2) cafe
     3) serve vegan food
  */
 
+struct Cafe 
+{
+    // number of staff working
+    int numOfStaffWorking = 25;
+    // number of tables used
+    int numOfTablesUsed = 100;
+    // amount of food wastage in KG
+    double amountOfFoodWastageInKg = 3;
+    // soup of the day (std::string)
+    std::string soupOfTheDay = "Onion Soup";
+    // average cost of a meal in dollars (double)
+    double avgCostPerMealInDollars = 12.99;
+
+    struct RentalCost
+    {
+        int areaInMetreCube = 10000;
+        bool doesItNeedRenovation = true;
+        double expectedNumOfCustomersPerDay = 73.5;
+        std::string address = "Sesame Street";
+        std::string minimumTenancyPeriod = "5 Years";
+        double costToRenovate(); //returns the cost of renovation
+        void expectedTime(int numOfWorkers = 10, int numOfHoursWorkedPerDay = 10, int offDays = 6);
+    };
+
+    // serve speciality drinks
+    void serveSpecalityDrinks (int price, bool drinkIsAvailable);
+    // provide table service
+    void provideTableService (RentalCost price, int serviceCharge, double waiterTips);
+    // serve vegan food
+    void serveVeganFood (double additionalCharge);
+};
+
 /*
 Thing 3) iphone
 5 properties:
@@ -214,6 +281,27 @@ Thing 3) iphone
     2) browse the internet
     3) download mobile applications
  */
+
+struct Iphone
+{
+    // amount of storage space
+    float StorageSpaceInTeraByte = 3.44f;
+    // screen refresh rate (int)
+    int screenRefreshRate = 1000;
+    // number of speakers
+    int numOfSpeakers = 3;
+    // value of camera megapixels
+    double cameraMegapixel = 20.2;
+    // cost of the phone
+    double costOfPhone = 5003.99;
+
+    // make a phone call
+    void makePhoneCall(bool overseasCall);
+    // browse the internet
+    void browseTheInternet();
+    // download mobile applications
+    auto downloadMobileApplication(std::string mobileAppName); //returns name of mobile application to download.
+};
 
 /*
 Thing 4) midi keyboard
@@ -229,6 +317,27 @@ Thing 4) midi keyboard
     3) midi link to other midi devices
 */
 
+struct MidiKeyboard
+{
+    // velocity of keybeds
+    int velocityOfKeybeds = 127;
+    // number of keys
+    int numOfKeys = 88;
+    // brand
+    std::string brand = "Roland";
+    // number of rotary control
+    int numOfRotaryControl = 10;
+    // weight
+    double weightInKg = 2.5;
+
+    // use it as a classic keyboard
+    void useAsKeyboard(bool pianoSound);
+    // transpose in octaves
+    int transposeInOctaves(int octave); //returns how many octave it transposes.
+    // midi link to other midi devices
+    void midiLinkToOtherDevice(bool externallMidiDeviceConnected);
+};
+
 /*
 Thing 5) Staff
 5 properties:
@@ -240,8 +349,39 @@ Thing 5) Staff
 3 things it can do:
     1) fix technical issues on board
     2) serve customers
-    3) swim
+    3) they can swim
  */
+
+struct Staff
+{
+    // number of engineering staff
+    int numOfEngineeringStaff = 30;
+    // colour of uniform
+    std::string colourOfUniform = "Dark Blue";
+    // age
+    int age = 30;
+    // gender
+    bool genderIsMale = 1;
+    // wages
+    double wages = 2222.22;
+
+    struct StaffWelfare
+    {   
+        int numberOfMealsPerDay = 4;
+        bool didTheyWorkMoreThan6Hours = true;
+        int numOfOffDays = 2;
+
+        int percentageOfTips(int customersServed, int hoursWorked); //returns percentage of tips the staff can earn.
+        void sickDays(int daysStatedInContract);
+    };
+    
+    // fix technical issues on board
+    void fixTechnialIssuesOnBoard (int numOfStaffRequired);
+    // serve customers
+    void serveCustomers();
+    // they can swim
+    void theyCanSwim(StaffWelfare swim);
+};
 
 /*
 Thing 6) BuildSpecification
@@ -257,6 +397,27 @@ Thing 6) BuildSpecification
     3) show building project date
  */
 
+struct BuildSpecification
+{
+    // tons of steel used
+    double tonsOfSteelUsed = 23.59;
+    // company materials were bought from
+    std::string companyMaterialsWereBoughtFrom = "Very good stuff";
+    // volume of ship in m3
+    float volOfShipInMetreCube = 59834.34f;
+    // total weight in tons 
+    double totalWeightInTons = 493.34;
+    // imported materials
+    std::string importedMaterials = "aluminium";
+
+    // describe material used
+    void materialUsed();
+    // describe weight of ship
+    double weightOfShip(double weightOfMaterials, int avgWeightOfPassengers, int maxCapacityOfPassengers);
+    // show building project date 
+    void buildingProjectDate(std::string startDate, std::string endDate);
+};
+
 /*
 Thing 7) Entertainment
 5 properties:
@@ -270,6 +431,27 @@ Thing 7) Entertainment
     2) family friendly
     3) work for long haul
  */
+
+struct Entertainment
+{
+    // name of act
+    std::string nameOfAct = "WOW";
+    // cost of hire
+    double costOfHire = 2359.23;
+    // allocated time
+    std::string allocatedTime = "2pm - 5pm everyday";
+    // number of performers
+    int numOfPerformers = 7;
+    // location of performance
+    std::string locationOfPerformance = "Sky Deck";
+
+    // do acrobats
+    bool doAcrobats(bool safetyEquipmentIsPresent); //returns if they are able to perform acrobats.
+    // family friendly
+    void familyFriendly();
+    // work for long haul
+    void workForLongHaul();
+};
 
 /*
 Thing 8) Facilities
@@ -285,6 +467,27 @@ Thing 8) Facilities
     3) allow passengers to relax
  */
 
+struct Facilities
+{
+    // size of swimming pool in hectars
+    float sizeOfPoolInHectars = 200;
+    // number of shops opened 24/7
+    int numOfShopsOpened24_7 = 20;
+    // opening hours of spa
+    std::string openingHoursOfSpa = "10am - 10pm";
+    // number of gym equipment
+    int numOfGymEquipment = 40;
+    // number of restauruants available
+    int numOfRestauruantsAvailable = 25;
+
+    // keep passengers busy
+    void keepPassengersBusy(int activitiesPlanned);
+    // entertain children
+    void entertainChildren(int dayCareServiceSlots);
+    // allow passengers to relax
+    void allowPassengersToRelax(int numOfRelaxingSongInPlaylist);
+};
+
 /*
 Thing 9) SafetyProcedure
 5 properties:
@@ -299,6 +502,27 @@ Thing 9) SafetyProcedure
     3) display exit route
  */
 
+struct SafetyProcedure
+{
+    // number of floors
+    int numOfFloors = 6;
+    // number of personnel on board
+    int numOfPersonnelOnBoard = 1500;
+    // number of lifeboats
+    int numOfLifeboats = 80;
+    // helpline number (int)
+    int helplineNum = 10291092;
+    // meeting point
+    char meetingPoint = 'C';
+
+    // inform crew and passengers safety information
+    bool informSafetyInformation(bool SentViaEmail, bool broadcastedOnPA); //returns if information has been shared.
+    // display floorplan
+    bool displayFloorplan(); //returns if floorplan has been displayed.
+    // display exit route
+    bool displayExitRoute(); //returns if exit route has been displayed.
+};
+
 /*
 Thing 10) Cruise Ship
 5 properties:
@@ -312,6 +536,22 @@ Thing 10) Cruise Ship
     2) ferry 5000 passengers
     3) shopping complex opens all day
  */
+
+struct CruiseShip
+{
+    Staff name;
+    BuildSpecification buildSpecsOfShip;
+    Entertainment typeOfEntertainment;
+    Facilities typeOfFacilities;
+    SafetyProcedure shipSafetyProcedure;
+
+    // travel for 10 days without stopovers
+    void travelFor10DaysWithoutStopovers();
+    // ferry 5000 passengers
+    void ferry5000Passengers();
+    // shopping complex opens all day
+    void shoppingComplexOpensAllDay();
+};
 
 
 /*
