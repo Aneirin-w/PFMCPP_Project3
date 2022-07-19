@@ -53,51 +53,51 @@ Sub Object 1: Steering Wheel
     Name 4 things you'll find on the:    Steering Wheel
         1) paddle shifters
         2) 'cruise control' controls
-        3) 
-        4) 
+        3) airbag
+        4) radio controls
     Name 2 things you can do with the:   Steering Wheel
         1) adjust cruise control settings.
-        2)
+        2) adjust speaker volume
         
 Sub Object 2: Instrument Cluster
     Name 4 things you'll find on the:   Instrument Cluster
-        1)
-        2)
-        3)
-        4)
+        1) current gear position
+        2) speedometer
+        3) fuel guage
+        4) tachometer
     Name 3 things you can do with the:   Instrument Cluster
-        1)
-        2)
-        3)
+        1) observe current speed of the car
+        2) observe the current gear position of the car
+        3) observe whether the signals are turned on
     
 Sub Object 3: Environment Controls
     Name 3 things you'll find on the:    Environment Controls
-        1)
-        2)
-        3)
+        1) airconditioning controls
+        2) controls for the radio
+        3) car seat heater
     Name 3 things you can do with the:   Environment Controls
-        1)
-        2)
-        3)
+        1) dial telephone number with the numpad
+        2) turn on heating for the windshield
+        3) turn on or off the fan 
 
 Sub Object 4: Infotainment System
     Name 3 things you'll find on the:    Infotainment System
-        1)
-        2)
-        3)
+        1) current date
+        2) GPS
+        3) outside temperature
     Name 3 things you can do with the:   Infotainment System
-        1)
-        2)
-        3)
+        1) use it as a GPS navigator
+        2) connect it to smartphone
+        3) view parking assistant camera
 
 Sub Object 5: Seat 
     Name 3 things you'll find on the:    Seat
-        1)
-        2)
-        3)
+        1) head rest
+        2) seat belt
+        3) lever to adjust seat position
     Name 2 things you can do with the:   Seat
-        1)
-        2)
+        1) adjust seat position
+        2) adjust angle of backrest
 */
 
 /*
@@ -153,62 +153,6 @@ Part 1b Assignment: 1 Step
         c) pick properties that can eventually be represented with 
         'int float double bool char std::string'.
 */
-
-/*
-Thing 1)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-/*
-Thing 2)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-/*
-Thing 3)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-/*
-Thing 4)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
 
  /*
 Part 1c - Lesson
@@ -279,19 +223,6 @@ Define an object that is made of 5 sub-objects.
     you'll define these 5 sub-objects in Part 1d.
 */
 
-/*
-Thing 10)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
 
 /*
 Part 1d - Lesson
@@ -384,75 +315,7 @@ each property for UDTs 5 - 9.
 Step 3 is written below UDTs 5 - 9
 */
 
-/*
-Thing 5)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
 
-/*
-Thing 6)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-/*
-Thing 7)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-/*
-Thing 8)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-/*
-Thing 9)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
 
 /*
 ===================
@@ -472,7 +335,144 @@ After you have MOVED your 10 UDTs, send me a DM with your pull request link.
 I will review the pseudo-code that you have written.
 */
 
+/* Thing 1) Audio Interface
+5 properties:
+    1) number of ADAT inputs (int)
+    2) number of XLR inputs (int)
+    3) number of headphone outputs (int)
+    4) percentage of THD at 1kHz of the line outputs (float)
+    5) amount of watts required to operate (float)
+3 things it can do:
+    1) link analogue channel 1 and 2 together
+    2) adjust the playback level of main monitors
+    3) mute the main monitors
+*/
 
+/*
+Thing 2) cafe
+5 properties:
+    1) number of staff working (int)
+    2) number of tables used (int)
+    3) amount of food wastage in KG (double)
+    4) soup of the day (std::string)
+    5) average cost of a meal in dollars (double)
+3 things it can do:
+    1) serve speciality drinks
+    2) provide table service
+    3) serve vegan food
+ */
+
+/*
+Thing 3) iphone
+5 properties:
+    1) amount of storage space (float)
+    2) screen refresh rate (int)
+    3) number of speakers (int)
+    4) value of camera megapixels (double)
+    5) cost of the phone (double)
+3 things it can do:
+    1) make a phone call
+    2) browse the internet
+    3) download mobile applications
+ */
+
+/*
+Thing 4) midi keyboard
+5 properties:
+    1) velocity of keybeds (int)
+    2) number of keys (int)
+    3) brand (std::string)
+    4) number of rotary control (int)
+    5) weight (double)
+3 things it can do:
+    1) use it as a classic keyboard
+    2) transpose in octaves
+    3) midi link to other midi devices
+*/
+
+/*
+Thing 5) Staff
+5 properties:
+    1) number of engineering staff (int)
+    2) colour of uniform (std::string)
+    3) age (int)
+    4) gender (bool)
+    5) wages (double)
+3 things it can do:
+    1) fix technical issues on board
+    2) serve customers
+    3) swim
+ */
+
+/*
+Thing 6) BuildSpecification
+5 properties:
+    1) tons of steel used (double)
+    2) company materials were bought from (std::string)
+    3) volume of ship in m3 (float)
+    4) total weight in tons (double)
+    5) imported materials (std::string)
+3 things it can do:
+    1) describe material used
+    2) describe weight of ship
+    3) show building project date
+ */
+
+/*
+Thing 7) Entertainment
+5 properties:
+    1) name of act (std::string)
+    2) cost of hire (double)
+    3) allocated time (std::string)
+    4) number of performers (int)
+    5) location of performance (std::string)
+3 things it can do:
+    1) do acrobats
+    2) family friendly
+    3) work for long haul
+ */
+
+/*
+Thing 8) Facilities
+5 properties:
+    1) size of swimming pool in hectars (float)
+    2) number of shops opened 24/7 (int)
+    3) opening hours of spa (std::string)
+    4) number of gym equipment (int)
+    5) number of restauruants available (int)
+3 things it can do:
+    1) keep passengers busy
+    2) entertain children
+    3) allow passengers to relax
+ */
+
+/*
+Thing 9) SafetyProcedure
+5 properties:
+    1) number of floors (int)
+    2) number of personnel on board (int)
+    3) number of lifeboats (int)
+    4) helpline number (int)
+    5) meeting point (char)
+3 things it can do:
+    1) inform crew and passengers safety information
+    2) display floorplan
+    3) display exit route
+ */
+
+/*
+Thing 10) Cruise Ship
+5 properties:
+    1) Staff
+    2) BuildSpecifications
+    3) Entertainment
+    4) Facilities
+    5) SafetyProcedure
+3 things it can do:
+    1) travel for 10 days without stopovers
+    2) ferry 5000 passengers
+    3) shopping complex opens all day
+ */
 
 
 /*
