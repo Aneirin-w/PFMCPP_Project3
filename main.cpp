@@ -349,7 +349,7 @@ Thing 5) Staff
 3 things it can do:
     1) fix technical issues on board
     2) serve customers
-    3) they can swim
+    3) purchase with staff discount
  */
 
 struct Staff
@@ -379,8 +379,8 @@ struct Staff
     void fixTechnialIssuesOnBoard (int numOfStaffRequired);
     // serve customers
     void serveCustomers();
-    // they can swim
-    void theyCanSwim(StaffWelfare swim);
+    // purchase with staff discount
+    void purchaseWithStaffDiscount(StaffWelfare discount);
 };
 
 /*
@@ -411,11 +411,11 @@ struct BuildSpecification
     std::string importedMaterials = "aluminium";
 
     // describe material used
-    void materialUsed();
+    void describeMaterialUsed();
     // describe weight of ship
-    double weightOfShip(double weightOfMaterials, int avgWeightOfPassengers, int maxCapacityOfPassengers);
+    double displayWeightOfShip(double weightOfMaterials, int avgWeightOfPassengers, int maxCapacityOfPassengers);
     // show building project date 
-    void buildingProjectDate(std::string startDate, std::string endDate);
+    void showBuildingProjectDate(std::string startDate, std::string endDate);
 };
 
 /*
@@ -428,7 +428,7 @@ Thing 7) Entertainment
     5) location of performance (std::string)
 3 things it can do:
     1) do acrobats
-    2) family friendly
+    2) perform with audience
     3) work for long haul
  */
 
@@ -447,8 +447,8 @@ struct Entertainment
 
     // do acrobats
     bool doAcrobats(bool safetyEquipmentIsPresent); //returns if they are able to perform acrobats.
-    // family friendly
-    void familyFriendly();
+    // perform with audience
+    void performWithAudience();
     // work for long haul
     void workForLongHaul();
 };
@@ -534,7 +534,7 @@ Thing 10) Cruise Ship
 3 things it can do:
     1) travel for 10 days without stopovers
     2) ferry 5000 passengers
-    3) shopping complex opens all day
+    3) sink
  */
 
 struct CruiseShip
@@ -549,8 +549,8 @@ struct CruiseShip
     void travelFor10DaysWithoutStopovers();
     // ferry 5000 passengers
     void ferry5000Passengers();
-    // shopping complex opens all day
-    void shoppingComplexOpensAllDay();
+    // sink
+    void sink(bool crashedIntoSomething);
 };
 
 
