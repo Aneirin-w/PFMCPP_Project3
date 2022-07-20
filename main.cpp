@@ -1,190 +1,169 @@
 /*
-Project 3 - Part 1e / 5
-Video:  Chapter 2 Part 5
-User-Defined Types
+ Project 4 - Part 2 / 9
+ Video: Chapter 3 Part 6
 
-Continue your work on branch Part1
+ Create a branch named Part2
 
-Purpose: The entire purpose of this 5-part project is to get you writing C++ code that compiles and to 
-reinforce the syntax habits that C++ requires.  
-What you create in this project will be used as the basis of Project 5 in the course.   
+New/This/Pointers/References conclusion
 
-************************
-Part1 purpose:  Learn to write UDTs
-
-You are going to write 10 UDTs in project3.  
-Part1 will be broken up into 5 separate steps
-    Part 1a: you will learn to think about an object in terms of its sub-objects.
-    Part 1b: you will write 4 un-related UDTs in plain english
-    Part 1c: you will write 1 UDT in plain english that will be made of 5 related sub-objects
-    Part 1d: you will write plain-english UDTs for the 5 sub-objects that form the UDT defined in Part 1c
-    Part 1e: you will convert those 10 plain-english UDTs into code that runs.
-************************
-
-Convert your 10 Plain-english UDTs into code.
-
-I recommend compiling after finishing each one and making sure it compiles 
-without errors or warnings before moving on to writing the next UDT. 
-
-1) define an empty struct below your plain-english UDT. i.e.:
-
-Thing: Car Wash   
-    5 properties:
-        - number of vacuum cleaners
-        - number of eco-friendly cleaning supplies
-        - stores the amount of water used per week.
-        - stores amount of profit made per week
-        - number of cars serviced per day
-    3 things it can do:
-        - wash and wax car
-        - charge customer
-        - detail the car interior
+    Build/Run often with this task to make sure you're not breaking the code with each step.
+    I recommend committing after you get each step working so you can revert to a working version easily if needed.
+ 
+ 0) in the blank space below, declare/define an empty struct named 'A' on a single Line. 
+     on the lines below it, write a struct named 'HeapA' that correctly shows how to own an instance of 'A' 
+         on the heap without leaking, without using smart pointers. 
  */
 
-#if false //ignore these #if #endif lines. they're just here to prevent compiler errors.
-struct CarWash
-{
 
-};
-#endif
-/*
-    - Do this for all 10 UDTs
 
-2) Below your plain-english UDT, Copy your 5 properties & 3 actions into the empty struct body.
-    - comment them out.
-    - Do this for all 10 UDTs
-    
-3) declare your member variables and member functions underneath each plain-english comment in your struct's body.
-    - give the member variables relevant data types
-    - Do this for all 10 UDTs
-    - if your functions return something other than 'void', add a comment explaining what is being returned.  see the example code below.
+
+
+
+
+
+
+
+
+ /*
+ 1) Edit your 3 structs so that they own a heap-allocated primitive type without using smart pointers named 'value'
+         IntType should own a heap-allocated int, for example.
  
-4) make the function parameter list for those member functions use some of your User-Defined Types
-    - You'll write definitions/implementations for these functions in Project3 Part2
-    - you'll call each of these functions in Project3 part3
-    - Do this for all 10 UDTs
+ 2) give it a constructor that takes the appropriate primitive
+    this argument will initialize the owned primitive's value.
+         i.e. if you're owning an int on the heap, your ctor argument will initialize that heap-allocated int's value.
  
-5) make 2 of the 10 user-defined types have a nested class.  
-    - this nested class also needs 5 properties and 3 actions.
-    - these nested classes are not considered one of your 10 UDTs.
-    - this nested class must be related to the class it is nested inside
+ 3) modify those add/subtract/divide/multiply member functions from chapter 2 on it
+         a) make them modify the owned numeric type
+         b) set them up so they can be chained together.
+             i.e.
+             DoubleType dt(3.5);
+             dt.add(3.0).multiply(-2.5).divide(7.2); //an example of chaining
  
-6) your 10th UDT's properties should be instances of your #5-#9 UDTs.   
-    - No primitives allowed!
+ 4) write add/subtract/divide/multiply member functions for each type that take your 3 UDTs
+        These are in addition to your member functions that take primitives
+        for example, IntType::divide(const DoubleType& dt);
+        These functions should return the result of calling the function that takes the primitive.
+        This technique of having multiple functions with the same name and different function arguments is known as 'function overloading' or 'overloaded functions'.
+        This topic will be covered in Chapter 4 Part 7.
+     
+ 5) Don't let your heap-allocated owned type leak!
  
-7) After you finish defining each type, click the [run] button.  
-    Clear up any errors or warnings as best you can. 
-    if your code produces a [-Wpadded] warning, add '-Wno-padded' to the .replit file with the other compiler flags (-Weverything -Wno-missing-prototypes etc etc)
+ 6) replace your main() with the main() below.
+    It has some intentional mistakes that you need to fix to match the expected output
+    i.e. don't forget to dereference your pointers to get the value they hold.
+    Do not change any values being passed into the functions.
+
+ 7) click the [run] button.  Clear up any errors or warnings as best you can.
  */
 
 /*
- example:  
+your program should generate the following output EXACTLY.
+This includes the warnings.
+Use a service like https://www.diffchecker.com/diff to compare your output. 
+you'll learn to solve the conversion warnings in the next project part.
 
-Thing: Car Wash   
-    5 properties:
-        - number of vacuum cleaners
-        - number of eco-friendly cleaning supplies
-        - stores the amount of water used per week.
-        - stores amount of profit made per week
-        - number of cars serviced per day
-    3 things it can do:
-        - wash and wax car
-        - charge customer
-        - detail the car interior
- */
+18 warnings generated.
+FloatType add result=4
+FloatType subtract result=2
+FloatType multiply result=4
+FloatType divide result=0.25
+
+DoubleType add result=4
+DoubleType subtract result=2
+DoubleType multiply result=4
+DoubleType divide result=0.8
+
+IntType add result=4
+IntType subtract result=2
+IntType multiply result=4
+IntType divide result=1
+
+Chain calculation = 590
+New value of ft = (ft + 3.0f) * 1.5f / 5.0f = 0.975
+---------------------
+
+Initial value of dt: 0.8
+Initial value of it: 590
+Use of function concatenation (mixed type arguments) 
+New value of dt = (dt * it) / 5.0f + ft = 95.375
+---------------------
+
+Intercept division by 0 
+New value of it = it / 0 = error: integer division by zero is an error and will crash the program!
+590
+New value of ft = ft / 0 = warning: floating point division by zero!
+inf
+New value of dt = dt / 0 = warning: floating point division by zero!
+inf
+---------------------
+
+good to go!
+
+
+
+
+
+*/
 
 #include <iostream>
-#include <string>
 
-struct CarWash //                                   1) define an empty struct for each of your 10 types.       
-{
-    //number of vacuum cleaners                     2) copied and commented-out plain-english property
-    int numVacuumCleaners = 3; //                   3) member variables with relevant data types.
-    //number of eco-friendly cleaning supplies      
-    int numEcoFriendlyCleaningSupplies = 20;     
-    //stores the amount of water used per week.     
-    float waterUsedPerWeek = 200.f;            
-    //stores amount of profit made per week         
-    float profitPerWeek = 495.95f;               
-    //number of cars serviced per day               
-    int numberOfCarsServiced = 10;               
+int main()
+{   
+    //testing instruction 0
+    HeapA heapA; 
+
+    //assign heap primitives
+    FloatType ft ( 2.0f );
+    DoubleType dt ( 2 );
+    IntType it ( 2 ) ;
+
+    std::cout << "FloatType add result=" << ft.add( 2.0f ).value << std::endl;
+    std::cout << "FloatType subtract result=" << ft.subtract( 2.0f ).value << std::endl;
+    std::cout << "FloatType multiply result=" << ft.multiply( 2.0f ).value << std::endl;
+    std::cout << "FloatType divide result=" << ft.divide( 16.0f).value << std::endl << std::endl;
+
+    std::cout << "DoubleType add result=" << dt.add(2.0).value << std::endl;
+    std::cout << "DoubleType subtract result=" << dt.subtract(2.0).value << std::endl;
+    std::cout << "DoubleType multiply result=" << dt.multiply(2.0).value << std::endl;
+    std::cout << "DoubleType divide result=" << dt.divide(5.f).value << std::endl << std::endl;
+
+    std::cout << "IntType add result=" << it.add(2).value << std::endl;
+    std::cout << "IntType subtract result=" << it.subtract(2).value << std::endl;
+    std::cout << "IntType multiply result=" << it.multiply(2).value << std::endl;
+    std::cout << "IntType divide result=" << it.divide(3).value << std::endl << std::endl;
+    std::cout << "Chain calculation = " << (it.multiply(1000).divide(2).subtract(10).add(100)).value << std::endl;
+
+        // FloatType object instanciation and method tests
+    // --------
+    std::cout << "New value of ft = (ft + 3.0f) * 1.5f / 5.0f = " << ft.add( 3.0f ).multiply(1.5f).divide(5.0f).value << std::endl;
+       
+    std::cout << "---------------------\n" << std::endl; 
     
-    struct Car //5)                                 Note that the nested type 'Car' is related to the 'CarWash' 
-    {
-        //2) member variables with relevant data types.  the names are appropriate for the U.D.T.'s purpose.
-        bool isAPickupTruck = false;
-        float gasMileage = 26.2f;        
-        int year = 1985;
-        std::string manufacturer = "Toyota";
-        std::string model = "Corolla";
+    // DoubleType/IntType object instanciation and method tests
+    // --------
+    std::cout << "Initial value of dt: " << dt.value << std::endl;
+    std::cout << "Initial value of it: " << it.value << std::endl;
+    // --------
+    std::cout << "Use of function concatenation (mixed type arguments) " << std::endl;
+    std::cout << "New value of dt = (dt * it) / 5.0f + ft = " << (dt.multiply(it).divide(5.0f).add(ft).value) << std::endl;
 
-        //3) a member function.  it has multiple arguments, some with default values.
-        //the parameter names are related to the work the function will perform.
-        void fillTank(float costPerGallon, double fuelAmountInGallons = 2.0, bool requiresDiesel = false);  
-        void breakDown(std::string failureType, bool requiresTow = false);
-        int getMilesTraveledAnnually(bool includeUberLyftTrips); //3) returns the number of miles traveled
-    };
-
-    //wash and wax car
-    void washAndWaxCar(Car carA); //4) a member function whose parameter is a UDT.
-    //charge customer
-    float chargeCustomer(float discountPercentage); //3) returns the total amount charged.
-    //detail the car interior
-    void detailInterior(Car carB);
+    std::cout << "---------------------\n" << std::endl; 
     
-    //5) a member variable whose type is a UDT.
-    Car carBeingServiced;  
+    // Intercept division by 0
+    // --------
+    std::cout << "Intercept division by 0 " << std::endl;
+    std::cout << "New value of it = it / 0 = " << it.divide(0).value << std::endl;
+    std::cout << "New value of ft = ft / 0 = " << ft.divide(0).value << std::endl;
+    std::cout << "New value of dt = dt / 0 = " << dt.divide(0).value << std::endl;
 
-    /*
-    Pay attention to the member functions that take an instance of 'Car'
-    Notice that there is a member variable of the same type.
+    std::cout << "---------------------\n" << std::endl; 
 
-    It makes sense to pass a Car to the function 'washAndWaxCar' because car washes service MANY cars
-    However, they only service ONE car at a time.
-    the carBeingServiced's value would change every time you wash and wax the car. 
+    std::cout << "good to go!\n";
 
-    I see many students who write code emulating this format, but their usage does not make logical sense.  
-    Consider the following snippet:
+    return 0;
+}
 
-    struct SoccerTeam
-    {
-        struct Manager
-        {
-            ...
-        };
 
-        // train their skills
-        void trainPlayerSkills(Manager managerA);
-    
-        Manager teamManager;
-    };
-
-    It does not make sense to pass in a new Manager whenever you are going to train your team players.
-    Soccer teams have ONE manager.
-
-    a much more relevant usage would be adding a member function that hires a new manager:
-
-    struct SoccerTeam
-    {
-        struct Manager
-        {
-            ...
-        };
-
-        void hireNewManager(Manager newManager);
-    
-        Manager teamManager;
-    };
-
-    We can safely assume that the 'Manager' instance that is being passed in will be replacing the current 'teamManager' variable without looking at any other code.
-    This is because the function name and function argument clearly indicate what they are/what they do.
-
-    Your function names and parameter names should make LOGICAL SENSE.
-    Readers of your code should be able to INTUITIVELY understand what your function implementations will do without actually seeing the implementations.
-
-    Keep this in mind when you define your UDTs in this project part.
-    */
-};
 
 /* Thing 1) Audio Interface
 5 properties:
