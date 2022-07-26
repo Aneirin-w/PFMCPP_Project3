@@ -107,10 +107,54 @@ struct CarWash
     you should be able to deduce the return type of those functions based on their usage in Person::run()
     You'll need to insert the Person struct from the video in the space below.
  */
+struct Person
+{
+    int age;
+    int height;
+    float hairlength;
+    float GPA;
+    unsigned int SATScore;
+    int distanceTravelled;
+    int totalTime;
 
+    struct Foot
+    {
+    int strideDistance = 3;
+    int avgStepSize;
 
+    void stepForward();
+    int stepSize();
+    };
 
+    Foot leftFoot;
+    Foot rightFoot;
 
+    void run(int howFast, bool startWithLeftFoot);
+};
+
+void Person::Foot::stepForward()
+    {
+    }
+int Person::Foot::stepSize()
+    {
+        return avgStepSize;
+    }
+
+void Person::run(int howFast, bool startWithLeftFoot)
+{
+    if(startWithLeftFoot == true)
+    {
+        leftFoot.stepForward();
+        rightFoot.stepForward();
+    }
+    else
+    {
+        rightFoot.stepForward();
+        leftFoot.stepForward();
+    }
+    distanceTravelled += leftFoot.stepSize() + rightFoot.stepSize();
+    howFast = distanceTravelled / totalTime;
+}
 
  /*
  2) provide implementations for the member functions you declared in your 10 user-defined types from the previous video outside of your UDT definitions.
@@ -127,70 +171,43 @@ struct CarWash
  if your code produces a -Wpadded warning, add '-Wno-padded' to the .replit file with the other compiler flags (-Weverything -Wno-missing-prototypes etc etc)
  */
 
-
-/* Thing 1) Audio Interface
-5 properties:
-    1) number of ADAT inputs (int)
-    2) number of XLR inputs (int)
-    3) number of headphone outputs (int)
-    4) percentage of THD at 1kHz of the line outputs (float)
-    5) amount of watts required to operate (float)
-3 things it can do:
-    1) link analogue channel 1 and 2 together
-    2) adjust the playback level of main
-    3) mute the main monitors
-*/
 #include <iostream>
 #include <string>
 
 struct AudioInterface
 {
-    // number of ADAT inputs
     int numOfAdatInput = 2;
-    // number of XLR inputs
     int numOfXlrInputs = 4;
-    // number of headphone outputs
     int numOfHeadphonesOutputs = 6;
-    // percentage of THD at 1kHz of the line outputs
     float percentageOfTHD = 0.0001f;
-    // amount of watts required to operate
     float amountOfWattsRequired = 29.5f;
+    float levelControl = 10.f;
 
-    // link analogue channel 1 and 2 together
     void linkAnalogueChannels1And2();
-    // adjust the playback level of main
-    void mainsPlaybackLevel(int displayLevel);
-    // mute the main monitors
-    void muteMainMonitors(bool pressMuteButton);
+    float mainsPlaybackLevel(float displayLevel);
+    void muteMainMonitors();
 };
 
-/*
-Thing 2) cafe
-5 properties:
-    1) number of staff working (int)
-    2) number of tables used (int)
-    3) amount of food wastage in KG (double)
-    4) soup of the day (std::string)
-    5) average cost of a meal in dollars (double)
-3 things it can do:
-    1) serve speciality drinks
-    2) provide table service
-    3) serve vegan food
- */
+    void AudioInterface::linkAnalogueChannels1And2()
+    {
+    }
+    float AudioInterface::mainsPlaybackLevel(float displayLevel)
+    {
+        displayLevel = amountOfWattsRequired * levelControl;
+        return displayLevel;
+    }
+    void AudioInterface::muteMainMonitors()
+    {
+    }
 
 struct Cafe 
 {
-    // number of staff working
     int numOfStaffWorking = 25;
-    // number of tables used
     int numOfTablesUsed = 100;
-    // amount of food wastage in KG
     double amountOfFoodWastageInKg = 3;
-    // soup of the day (std::string)
     std::string soupOfTheDay = "Onion Soup";
-    // average cost of a meal in dollars (double)
     double avgCostPerMealInDollars = 12.99;
-
+    double foodPrice;
     struct RentalCost
     {
         int areaInMetreCube = 10000;
@@ -198,113 +215,128 @@ struct Cafe
         double expectedNumOfCustomersPerDay = 73.5;
         std::string address = "Sesame Street";
         std::string minimumTenancyPeriod = "5 Years";
-        double costToRenovate(); //returns the cost of renovation
-        void expectedTime(int numOfWorkers = 10, int numOfHoursWorkedPerDay = 10, int offDays = 6);
+
+        int expectedTime(int numOfWorkers = 10, int numOfHoursWorkedPerDay = 10, int offDays = 6, int numOfDays = 50);
     };
 
-    // serve speciality drinks
-    void serveSpecalityDrinks (int price, bool drinkIsAvailable);
-    // provide table service
-    void provideTableService (RentalCost price, int serviceCharge, double waiterTips);
-    // serve vegan food
-    void serveVeganFood (double additionalCharge);
+    int serveSpecalityDrinks (int price, bool drinkIsAvailable);
+    void provideTableService ();
+    double serveVeganFood (double additionalCharge);
 };
 
-/*
-Thing 3) iphone
-5 properties:
-    1) amount of storage space (float)
-    2) screen refresh rate (int)
-    3) number of speakers (int)
-    4) value of camera megapixels (double)
-    5) cost of the phone (double)
-3 things it can do:
-    1) make a phone call
-    2) browse the internet
-    3) download mobile applications
- */
+int Cafe::RentalCost::expectedTime(int numOfWorkers, int numOfHoursWorkedPerDay, int offDays, int numOfDays)
+    {
+        int timeTaken = (numOfHoursWorkedPerDay * numOfDays) / numOfWorkers - offDays;
+        return timeTaken;
+    }
+int Cafe::serveSpecalityDrinks (int drinkPrice, bool drinkIsAvailable)
+    {
+        if (drinkIsAvailable == true)
+            {
+            drinkPrice = 10;
+        }
+        else
+            {
+            drinkPrice = 0;
+        }
+        return drinkPrice;
+    }
+void Cafe::provideTableService ()
+    {   
+    }
+double Cafe::serveVeganFood (double additionalCharge)
+    {
+        additionalCharge = 2.55 + foodPrice;
+        return additionalCharge;
+    }
 
 struct Iphone
 {
-    // amount of storage space
     float StorageSpaceInTeraByte = 3.44f;
-    // screen refresh rate (int)
     int screenRefreshRate = 1000;
-    // number of speakers
     int numOfSpeakers = 3;
-    // value of camera megapixels
     double cameraMegapixel = 20.2;
-    // cost of the phone
     double costOfPhone = 5003.99;
+    int totalCharge;
 
-    // make a phone call
-    void makePhoneCall(bool overseasCall);
-    // browse the internet
+    struct phoneBill
+    {
+        int bill = 13;
+
+        int additionalCharge();
+        int totalCharge();
+    };
+
+    phoneBill bill;
+
+    int makePhoneCall(bool overseasCall);
     void browseTheInternet();
-    // download mobile applications
-    auto downloadMobileApplication(std::string mobileAppName); //returns name of mobile application to download.
+    auto downloadMobileApplication(std::string mobileAppName);
 };
 
-/*
-Thing 4) midi keyboard
-5 properties:
-    1) velocity of keybeds (int)
-    2) number of keys (int)
-    3) brand (std::string)
-    4) number of rotary control (int)
-    5) weight (double)
-3 things it can do:
-    1) use it as a classic keyboard
-    2) transpose in octaves
-    3) midi link to other midi devices
-*/
+int Iphone::phoneBill::additionalCharge()
+    {
+        bill += 5;
+        return bill;
+    }
+int Iphone::phoneBill::totalCharge()
+    {
+        return bill;
+    }
+int Iphone::makePhoneCall(bool overseasCall)
+    {
+        if (overseasCall == true)
+        {
+            bill.additionalCharge();
+        }
+        else 
+        {
+            bill.totalCharge();
+        }
+        totalCharge = bill.totalCharge() + bill.additionalCharge();
+        return totalCharge;
+    }
+void Iphone::browseTheInternet()
+    {
+    }
+auto Iphone::downloadMobileApplication(std::string mobileAppName)
+    {
+        mobileAppName = "Angry Bird";
+    }
 
 struct MidiKeyboard
 {
-    // velocity of keybeds
     int velocityOfKeybeds = 127;
-    // number of keys
     int numOfKeys = 88;
-    // brand
     std::string brand = "Roland";
-    // number of rotary control
     int numOfRotaryControl = 10;
-    // weight
     double weightInKg = 2.5;
 
-    // use it as a classic keyboard
     void useAsKeyboard(bool pianoSound);
-    // transpose in octaves
-    int transposeInOctaves(int octave); //returns how many octave it transposes.
-    // midi link to other midi devices
+    int transposeInOctaves(int octave);
     void midiLinkToOtherDevice(bool externallMidiDeviceConnected);
 };
 
-/*
-Thing 5) Staff
-5 properties:
-    1) number of engineering staff (int)
-    2) colour of uniform (std::string)
-    3) age (int)
-    4) gender (bool)
-    5) wages (double)
-3 things it can do:
-    1) fix technical issues on board
-    2) serve customers
-    3) purchase with staff discount
- */
+void MidiKeyboard::useAsKeyboard(bool pianoSound)
+    {
+        pianoSound = true;
+    }
+int MidiKeyboard::transposeInOctaves(int octave)
+    {
+        octave += 1;
+        return octave;
+    }
+void midiLinkToOtherDevice(bool externallMidiDeviceConnected)
+    {
+        externallMidiDeviceConnected = true;
+    }
 
 struct Staff
 {
-    // number of engineering staff
     int numOfEngineeringStaff = 30;
-    // colour of uniform
     std::string colourOfUniform = "Dark Blue";
-    // age
     int age = 30;
-    // gender
     bool genderIsMale = 1;
-    // wages
     double wages = 2222.22;
 
     struct StaffWelfare
@@ -313,171 +345,153 @@ struct Staff
         bool didTheyWorkMoreThan6Hours = true;
         int numOfOffDays = 2;
 
-        int percentageOfTips(int customersServed, int hoursWorked); //returns percentage of tips the staff can earn.
+        int percentageOfTips(int customersServed, int hoursWorked);
         void sickDays(int daysStatedInContract);
     };
     
-    // fix technical issues on board
     void fixTechnialIssuesOnBoard (int numOfStaffRequired);
-    // serve customers
     void serveCustomers();
-    // purchase with staff discount
-    void purchaseWithStaffDiscount(StaffWelfare discount);
+    void purchaseWithStaffDiscount(int discount);
 };
 
-/*
-Thing 6) BuildSpecification
-5 properties:
-    1) tons of steel used (double)
-    2) company materials were bought from (std::string)
-    3) volume of ship in m3 (float)
-    4) total weight in tons (double)
-    5) imported materials (std::string)
-3 things it can do:
-    1) describe material used
-    2) describe weight of ship
-    3) show building project date
- */
+int Staff::StaffWelfare::percentageOfTips(int customersServed, int hoursWorked)
+    {
+        customersServed = 20;
+        hoursWorked = 30;
+        int tips = customersServed / hoursWorked;
+        return tips;
+    }
+void Staff::StaffWelfare::sickDays(int daysStatedInContract)
+    {
+        daysStatedInContract = 10;
+    }
+void Staff::fixTechnialIssuesOnBoard (int numOfStaffRequired)
+    {
+        numOfStaffRequired = 5;
+    }
+void Staff::serveCustomers()
+    {
+    }
+void Staff::purchaseWithStaffDiscount(int discount)
+    {
+        discount = 30;
+    }
 
 struct BuildSpecification
 {
-    // tons of steel used
     double tonsOfSteelUsed = 23.59;
-    // company materials were bought from
     std::string companyMaterialsWereBoughtFrom = "Very good stuff";
-    // volume of ship in m3
     float volOfShipInMetreCube = 59834.34f;
-    // total weight in tons 
     double totalWeightInTons = 493.34;
-    // imported materials
     std::string importedMaterials = "aluminium";
 
-    // describe material used
     void describeMaterialUsed();
-    // describe weight of ship
     double displayWeightOfShip(double weightOfMaterials, int avgWeightOfPassengers, int maxCapacityOfPassengers);
-    // show building project date 
     void showBuildingProjectDate(std::string startDate, std::string endDate);
 };
-
-/*
-Thing 7) Entertainment
-5 properties:
-    1) name of act (std::string)
-    2) cost of hire (double)
-    3) allocated time (std::string)
-    4) number of performers (int)
-    5) location of performance (std::string)
-3 things it can do:
-    1) do acrobats
-    2) perform with audience
-    3) work for long haul
- */
+void::BuildSpecification::describeMaterialUsed()
+    {
+    }
+double::BuildSpecification::displayWeightOfShip(double weightOfMaterials, int avgWeightOfPassengers, int maxCapacityOfPassengers)
+    {
+        double weightOfShip = weightOfMaterials + avgWeightOfPassengers + maxCapacityOfPassengers;
+        return weightOfShip;
+    }
+void::BuildSpecification::showBuildingProjectDate(std::string startDate, std::string endDate)
+    {
+        startDate = "20th Feb 2000";
+        endDate = "31st Nov 2005";
+    }
 
 struct Entertainment
 {
-    // name of act
     std::string nameOfAct = "WOW";
-    // cost of hire
     double costOfHire = 2359.23;
-    // allocated time
     std::string allocatedTime = "2pm - 5pm everyday";
-    // number of performers
     int numOfPerformers = 7;
-    // location of performance
     std::string locationOfPerformance = "Sky Deck";
 
-    // do acrobats
-    bool doAcrobats(bool safetyEquipmentIsPresent); //returns if they are able to perform acrobats.
-    // perform with audience
+    auto doAcrobats(bool safetyEquipmentIsPresent);
     void performWithAudience();
-    // work for long haul
     void workForLongHaul();
 };
-
-/*
-Thing 8) Facilities
-5 properties:
-    1) size of swimming pool in hectars (float)
-    2) number of shops opened 24/7 (int)
-    3) opening hours of spa (std::string)
-    4) number of gym equipment (int)
-    5) number of restauruants available (int)
-3 things it can do:
-    1) keep passengers busy
-    2) entertain children
-    3) allow passengers to relax
- */
+auto Entertainment::doAcrobats(bool safetyEquipmentIsPresent)
+    {
+        if (safetyEquipmentIsPresent == true)
+        {
+            return nameOfAct;
+        }
+        else     
+        {
+            std::string cancellation = "Performance Cancelled";
+            return cancellation;
+        }
+    }
+void Entertainment::performWithAudience()
+    {
+    }
+void Entertainment::workForLongHaul()
+    {
+    }
 
 struct Facilities
 {
-    // size of swimming pool in hectars
     float sizeOfPoolInHectars = 200;
-    // number of shops opened 24/7
     int numOfShopsOpened24_7 = 20;
-    // opening hours of spa
     std::string openingHoursOfSpa = "10am - 10pm";
-    // number of gym equipment
     int numOfGymEquipment = 40;
-    // number of restauruants available
     int numOfRestauruantsAvailable = 25;
 
-    // keep passengers busy
     void keepPassengersBusy(int activitiesPlanned);
-    // entertain children
     void entertainChildren(int dayCareServiceSlots);
-    // allow passengers to relax
     void allowPassengersToRelax(int numOfRelaxingSongInPlaylist);
 };
 
-/*
-Thing 9) SafetyProcedure
-5 properties:
-    1) number of floors (int)
-    2) number of personnel on board (int)
-    3) number of lifeboats (int)
-    4) helpline number (int)
-    5) meeting point (char)
-3 things it can do:
-    1) inform crew and passengers safety information
-    2) display floorplan
-    3) display exit route
- */
+void Facilities::keepPassengersBusy(int activitiesPlanned)
+    {
+        activitiesPlanned = 20;
+    }
+void Facilities::entertainChildren(int dayCareServiceSlots)
+    {
+        dayCareServiceSlots = 5;
+    }
+void Facilities::allowPassengersToRelax(int numOfRelaxingSongInPlaylist)
+    {
+        numOfRelaxingSongInPlaylist = 200;
+    }
 
 struct SafetyProcedure
 {
-    // number of floors
     int numOfFloors = 6;
-    // number of personnel on board
     int numOfPersonnelOnBoard = 1500;
-    // number of lifeboats
     int numOfLifeboats = 80;
-    // helpline number (int)
     int helplineNum = 10291092;
-    // meeting point
     char meetingPoint = 'C';
 
-    // inform crew and passengers safety information
-    bool informSafetyInformation(bool SentViaEmail, bool broadcastedOnPA); //returns if information has been shared.
-    // display floorplan
-    bool displayFloorplan(); //returns if floorplan has been displayed.
-    // display exit route
-    bool displayExitRoute(); //returns if exit route has been displayed.
+    auto informSafetyInformation(bool broadcastedOnPA);
+    void displayFloorplan();
+    void displayExitRoute();
 };
 
-/*
-Thing 10) Cruise Ship
-5 properties:
-    1) Staff
-    2) BuildSpecifications
-    3) Entertainment
-    4) Facilities
-    5) SafetyProcedure
-3 things it can do:
-    1) travel for 10 days without stopovers
-    2) ferry 5000 passengers
-    3) sink
- */
+auto::SafetyProcedure::informSafetyInformation(bool broadcastedOnPA)
+    {
+        if (broadcastedOnPA == true)
+        {
+            std::string done = "It is safe";
+            return done;
+        }
+        else
+        {
+            std::string notDone = "It is NOT safe";
+            return notDone;
+        }
+    }
+void::SafetyProcedure::displayFloorplan()
+    {
+    }
+void::SafetyProcedure::displayExitRoute()
+    { 
+    }
 
 struct CruiseShip
 {
@@ -487,14 +501,24 @@ struct CruiseShip
     Facilities typeOfFacilities;
     SafetyProcedure shipSafetyProcedure;
 
-    // travel for 10 days without stopovers
     void travelFor10DaysWithoutStopovers();
-    // ferry 5000 passengers
     void ferry5000Passengers();
-    // sink
     void sink(bool crashedIntoSomething);
 };
 
+void::CruiseShip::travelFor10DaysWithoutStopovers()
+    {
+    }
+void::CruiseShip::ferry5000Passengers()
+    {
+    }
+void::CruiseShip::sink(bool crashedIntoSomething)
+    {
+        if(crashedIntoSomething == true)
+        {
+            std::cout << "help help!";
+        }
+    }
 
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
