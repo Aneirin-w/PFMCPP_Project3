@@ -119,11 +119,11 @@ struct Person
 
     struct Foot
     {
-    int strideDistance = 3;
-    int avgStepSize;
+        int strideDistance = 3;
+        int avgStepSize;
 
-    void stepForward();
-    int stepSize();
+        void stepForward();
+        int stepSize();
     };
 
     Foot leftFoot;
@@ -133,12 +133,12 @@ struct Person
 };
 
 void Person::Foot::stepForward()
-    {
-    }
+{
+}
 int Person::Foot::stepSize()
-    {
+{
         return avgStepSize;
-    }
+}
 
 void Person::run(int howFast, bool startWithLeftFoot)
 {
@@ -188,17 +188,17 @@ struct AudioInterface
     void muteMainMonitors();
 };
 
-    void AudioInterface::linkAnalogueChannels1And2()
-    {
-    }
-    float AudioInterface::mainsPlaybackLevel(float displayLevel)
-    {
-        displayLevel = amountOfWattsRequired * levelControl;
-        return displayLevel;
-    }
-    void AudioInterface::muteMainMonitors()
-    {
-    }
+void AudioInterface::linkAnalogueChannels1And2()
+{
+}
+float AudioInterface::mainsPlaybackLevel(float displayLevel)
+{
+    displayLevel = amountOfWattsRequired * levelControl;
+    return displayLevel;
+}
+void AudioInterface::muteMainMonitors()
+{
+}
 
 struct Cafe 
 {
@@ -225,30 +225,30 @@ struct Cafe
 };
 
 int Cafe::RentalCost::expectedTime(int numOfWorkers, int numOfHoursWorkedPerDay, int offDays, int numOfDays)
-    {
-        int timeTaken = (numOfHoursWorkedPerDay * numOfDays) / numOfWorkers - offDays;
-        return timeTaken;
-    }
+{
+    int timeTaken = (numOfHoursWorkedPerDay * numOfDays) / numOfWorkers - offDays;
+    return timeTaken;
+}
 int Cafe::serveSpecalityDrinks (int drinkPrice, bool drinkIsAvailable)
+{
+    if (drinkIsAvailable == true)
     {
-        if (drinkIsAvailable == true)
-            {
-            drinkPrice = 10;
-        }
-        else
-            {
-            drinkPrice = 0;
-        }
-        return drinkPrice;
+        drinkPrice = 10;
     }
+    else
+    {
+        drinkPrice = 0;
+    }
+    return drinkPrice;
+}
 void Cafe::provideTableService ()
-    {   
-    }
+{   
+}
 double Cafe::serveVeganFood (double additionalCharge)
-    {
-        additionalCharge = 2.55 + foodPrice;
-        return additionalCharge;
-    }
+{
+    additionalCharge = 2.55 + foodPrice;
+    return additionalCharge;
+}
 
 struct Iphone
 {
@@ -275,34 +275,34 @@ struct Iphone
 };
 
 int Iphone::phoneBill::additionalCharge()
-    {
-        bill += 5;
-        return bill;
-    }
+{
+    bill += 5;
+    return bill;
+}
 int Iphone::phoneBill::totalCharge()
-    {
-        return bill;
-    }
+{
+    return bill;
+}
 int Iphone::makePhoneCall(bool overseasCall)
+{
+    if (overseasCall == true)
     {
-        if (overseasCall == true)
-        {
-            bill.additionalCharge();
-        }
-        else 
-        {
-            bill.totalCharge();
-        }
-        totalCharge = bill.totalCharge() + bill.additionalCharge();
-        return totalCharge;
+        bill.additionalCharge();
     }
+    else 
+    {
+        bill.totalCharge();
+    }
+    totalCharge = bill.totalCharge() + bill.additionalCharge();
+    return totalCharge;
+}
 void Iphone::browseTheInternet()
-    {
-    }
+{
+}
 auto Iphone::downloadMobileApplication(std::string mobileAppName)
-    {
-        mobileAppName = "Angry Bird";
-    }
+{
+    mobileAppName = "Angry Bird";
+}
 
 struct MidiKeyboard
 {
@@ -318,18 +318,18 @@ struct MidiKeyboard
 };
 
 void MidiKeyboard::useAsKeyboard(bool pianoSound)
-    {
-        pianoSound = true;
-    }
+{
+    pianoSound = true;
+}
 int MidiKeyboard::transposeInOctaves(int octave)
-    {
-        octave += 1;
-        return octave;
-    }
+{
+    octave += 1;
+    return octave;
+}
 void midiLinkToOtherDevice(bool externallMidiDeviceConnected)
-    {
-        externallMidiDeviceConnected = true;
-    }
+{
+    externallMidiDeviceConnected = true;
+}
 
 struct Staff
 {
@@ -355,27 +355,27 @@ struct Staff
 };
 
 int Staff::StaffWelfare::percentageOfTips(int customersServed, int hoursWorked)
-    {
-        customersServed = 20;
-        hoursWorked = 30;
-        int tips = customersServed / hoursWorked;
-        return tips;
-    }
+{
+    customersServed = 20;
+    hoursWorked = 30;
+    int tips = customersServed / hoursWorked;
+    return tips;
+}
 void Staff::StaffWelfare::sickDays(int daysStatedInContract)
-    {
-        daysStatedInContract = 10;
-    }
+{
+    daysStatedInContract = 10;
+}
 void Staff::fixTechnialIssuesOnBoard (int numOfStaffRequired)
-    {
-        numOfStaffRequired = 5;
-    }
+{
+    numOfStaffRequired = 5;
+}
 void Staff::serveCustomers()
-    {
-    }
+{
+}
 void Staff::purchaseWithStaffDiscount(int discount)
-    {
-        discount = 30;
-    }
+{
+    discount = 30;
+}
 
 struct BuildSpecification
 {
@@ -389,19 +389,19 @@ struct BuildSpecification
     double displayWeightOfShip(double weightOfMaterials, int avgWeightOfPassengers, int maxCapacityOfPassengers);
     void showBuildingProjectDate(std::string startDate, std::string endDate);
 };
-void::BuildSpecification::describeMaterialUsed()
-    {
-    }
-double::BuildSpecification::displayWeightOfShip(double weightOfMaterials, int avgWeightOfPassengers, int maxCapacityOfPassengers)
-    {
-        double weightOfShip = weightOfMaterials + avgWeightOfPassengers + maxCapacityOfPassengers;
-        return weightOfShip;
-    }
-void::BuildSpecification::showBuildingProjectDate(std::string startDate, std::string endDate)
-    {
-        startDate = "20th Feb 2000";
-        endDate = "31st Nov 2005";
-    }
+void BuildSpecification::describeMaterialUsed()
+{
+}
+double BuildSpecification::displayWeightOfShip(double weightOfMaterials, int avgWeightOfPassengers, int maxCapacityOfPassengers)
+{
+    double weightOfShip = weightOfMaterials + avgWeightOfPassengers + maxCapacityOfPassengers;
+    return weightOfShip;
+}
+void BuildSpecification::showBuildingProjectDate(std::string startDate, std::string endDate)
+{
+    startDate = "20th Feb 2000";
+    endDate = "31st Nov 2005";
+}
 
 struct Entertainment
 {
@@ -416,23 +416,23 @@ struct Entertainment
     void workForLongHaul();
 };
 auto Entertainment::doAcrobats(bool safetyEquipmentIsPresent)
+{
+    if (safetyEquipmentIsPresent == true)
     {
-        if (safetyEquipmentIsPresent == true)
-        {
-            return nameOfAct;
-        }
-        else     
-        {
-            std::string cancellation = "Performance Cancelled";
-            return cancellation;
-        }
+        return nameOfAct;
     }
+    else     
+    {
+        std::string cancellation = "Performance Cancelled";
+        return cancellation;
+    }
+}
 void Entertainment::performWithAudience()
-    {
-    }
+{
+}
 void Entertainment::workForLongHaul()
-    {
-    }
+{
+}
 
 struct Facilities
 {
@@ -448,17 +448,17 @@ struct Facilities
 };
 
 void Facilities::keepPassengersBusy(int activitiesPlanned)
-    {
-        activitiesPlanned = 20;
-    }
+{
+    activitiesPlanned = 20;
+}
 void Facilities::entertainChildren(int dayCareServiceSlots)
-    {
-        dayCareServiceSlots = 5;
-    }
+{
+    dayCareServiceSlots = 5;
+}
 void Facilities::allowPassengersToRelax(int numOfRelaxingSongInPlaylist)
-    {
-        numOfRelaxingSongInPlaylist = 200;
-    }
+{
+    numOfRelaxingSongInPlaylist = 200;
+}
 
 struct SafetyProcedure
 {
@@ -473,25 +473,25 @@ struct SafetyProcedure
     void displayExitRoute();
 };
 
-auto::SafetyProcedure::informSafetyInformation(bool broadcastedOnPA)
+auto SafetyProcedure::informSafetyInformation(bool broadcastedOnPA)
+{
+    if (broadcastedOnPA == true)
     {
-        if (broadcastedOnPA == true)
-        {
-            std::string done = "It is safe";
-            return done;
-        }
-        else
-        {
-            std::string notDone = "It is NOT safe";
-            return notDone;
-        }
+        std::string done = "It is safe";
+        return done;
     }
-void::SafetyProcedure::displayFloorplan()
+    else
     {
+        std::string notDone = "It is NOT safe";
+        return notDone;
     }
-void::SafetyProcedure::displayExitRoute()
-    { 
-    }
+}
+void SafetyProcedure::displayFloorplan()
+{
+}
+void SafetyProcedure::displayExitRoute()
+{ 
+}
 
 struct CruiseShip
 {
@@ -506,19 +506,19 @@ struct CruiseShip
     void sink(bool crashedIntoSomething);
 };
 
-void::CruiseShip::travelFor10DaysWithoutStopovers()
+void CruiseShip::travelFor10DaysWithoutStopovers()
+{
+}
+void CruiseShip::ferry5000Passengers()
+{
+}
+void CruiseShip::sink(bool crashedIntoSomething)
+{
+    if(crashedIntoSomething == true)
     {
+        std::cout << "help help!";
     }
-void::CruiseShip::ferry5000Passengers()
-    {
-    }
-void::CruiseShip::sink(bool crashedIntoSomething)
-    {
-        if(crashedIntoSomething == true)
-        {
-            std::cout << "help help!";
-        }
-    }
+}
 
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
