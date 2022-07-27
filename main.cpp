@@ -421,11 +421,8 @@ auto Entertainment::doAcrobats(bool safetyEquipmentIsPresent)
     {
         return nameOfAct;
     }
-    else     
-    {
-        std::string cancellation = "Performance Cancelled";
-        return cancellation;
-    }
+    std::string cancellation = "Performance Cancelled";
+    return cancellation;
 }
 void Entertainment::performWithAudience()
 {
@@ -480,11 +477,10 @@ auto SafetyProcedure::informSafetyInformation(bool broadcastedOnPA)
         std::string done = "It is safe";
         return done;
     }
-    else
-    {
-        std::string notDone = "It is NOT safe";
-        return notDone;
-    }
+        
+    std::string notDone = "It is NOT safe";
+    return notDone;
+
 }
 void SafetyProcedure::displayFloorplan()
 {
